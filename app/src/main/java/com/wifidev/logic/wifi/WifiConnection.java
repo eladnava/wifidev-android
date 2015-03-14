@@ -11,59 +11,53 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteOrder;
 
-public class WifiConnection
-{
-    public static String getInternalIP(Context context)
-    {
-        //--------------------------------
-        // Get wifi manager
-        //--------------------------------
+public class WifiConnection {
+	public static String getInternalIP(Context context) {
+		//--------------------------------
+		// Get wifi manager
+		//--------------------------------
 
-        WifiManager manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+		WifiManager manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
-        //--------------------------------
-        // Get IP
-        //--------------------------------
+		//--------------------------------
+		// Get IP
+		//--------------------------------
 
-        int ipAddress = manager.getConnectionInfo().getIpAddress();
+		int ipAddress = manager.getConnectionInfo().getIpAddress();
 
-        //--------------------------------
-        // Convert little-endian to
-        // big-endian if needed
-        //--------------------------------
+		//--------------------------------
+		// Convert little-endian to
+		// big-endian if needed
+		//--------------------------------
 
-        if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN))
-        {
-            ipAddress = Integer.reverseBytes(ipAddress);
-        }
+		if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
+			ipAddress = Integer.reverseBytes(ipAddress);
+		}
 
-        //--------------------------------
-        // Convert to byte array
-        //--------------------------------
+		//--------------------------------
+		// Convert to byte array
+		//--------------------------------
 
-        byte[] ipByteArray = BigInteger.valueOf(ipAddress).toByteArray();
+		byte[] ipByteArray = BigInteger.valueOf(ipAddress).toByteArray();
 
-        try
-        {
-            //--------------------------------
-            // Convert to an actual IP string
-            //--------------------------------
+		try {
+			//--------------------------------
+			// Convert to an actual IP string
+			//--------------------------------
 
-            return InetAddress.getByAddress(ipByteArray).getHostAddress();
-        }
-        catch (UnknownHostException ex)
-        {
-            //--------------------------------
-            // Log the error
-            //--------------------------------
+			return InetAddress.getByAddress(ipByteArray).getHostAddress();
+		} catch (UnknownHostException ex) {
+			//--------------------------------
+			// Log the error
+			//--------------------------------
 
-            Log.e(Logging.TAG_NAME, "Unable to get IP address.");
-        }
+			Log.e(Logging.TAG_NAME, "Unable to get IP address.");
+		}
 
-        //--------------------------------
-        // No IP
-        //--------------------------------
+		//--------------------------------
+		// No IP
+		//--------------------------------
 
-        return null;
-    }
+		return null;
+	}
 }

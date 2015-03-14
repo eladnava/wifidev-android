@@ -9,113 +9,104 @@ import com.wifidev.config.ADB;
 import com.wifidev.logic.adb.TCPIP;
 import com.wifidev.logic.wifi.WifiConnection;
 
-public class Main extends Activity
-{
-    TextView connectCommand;
+public class Main extends Activity {
+	TextView connectCommand;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        //--------------------------------
-        // Call super
-        //--------------------------------
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		//--------------------------------
+		// Call super
+		//--------------------------------
 
-        super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 
-        //--------------------------------
-        // Set up UI
-        //--------------------------------
+		//--------------------------------
+		// Set up UI
+		//--------------------------------
 
-        initializeUI();
+		initializeUI();
 
-        //--------------------------------
-        // Ask for root and set tcp port
-        //--------------------------------
+		//--------------------------------
+		// Ask for root and set tcp port
+		//--------------------------------
 
-        TCPIP.set();
-    }
+		TCPIP.set();
+	}
 
-    void initializeUI()
-    {
-        //--------------------------------
-        // Load layout
-        //--------------------------------
+	void initializeUI() {
+		//--------------------------------
+		// Load layout
+		//--------------------------------
 
-        setContentView(R.layout.main);
+		setContentView(R.layout.main);
 
-        //--------------------------------
-        // Load layout
-        //--------------------------------
+		//--------------------------------
+		// Load layout
+		//--------------------------------
 
-        connectCommand = (TextView)findViewById(R.id.connectCommand);
-    }
+		connectCommand = (TextView) findViewById(R.id.connectCommand);
+	}
 
-    @Override
-    protected void onResume()
-    {
-        //--------------------------------
-        // Call super
-        //--------------------------------
+	@Override
+	protected void onResume() {
+		//--------------------------------
+		// Call super
+		//--------------------------------
 
-        super.onResume();
+		super.onResume();
 
-        //--------------------------------
-        // Reload connect command
-        //--------------------------------
+		//--------------------------------
+		// Reload connect command
+		//--------------------------------
 
-        showConnectCommand();
-    }
+		showConnectCommand();
+	}
 
-    void showConnectCommand()
-    {
-        //--------------------------------
-        // Get internal Wifi connection IP
-        //--------------------------------
+	void showConnectCommand() {
+		//--------------------------------
+		// Get internal Wifi connection IP
+		//--------------------------------
 
-        String ip = WifiConnection.getInternalIP(this);
+		String ip = WifiConnection.getInternalIP(this);
 
-        //--------------------------------
-        // No IP? Not on Wifi...
-        //--------------------------------
+		//--------------------------------
+		// No IP? Not on Wifi...
+		//--------------------------------
 
-        if ( ip == null )
-        {
-            //--------------------------------
-            // Show error
-            //--------------------------------
+		if (ip == null) {
+			//--------------------------------
+			// Show error
+			//--------------------------------
 
-            connectCommand.setText(getString(R.string.noWifiConnection));
-        }
-        else
-        {
-            //--------------------------------
-            // Get adbd port
-            //--------------------------------
+			connectCommand.setText(getString(R.string.noWifiConnection));
+		} else {
+			//--------------------------------
+			// Get adbd port
+			//--------------------------------
 
-            int port = ADB.TCPIP_PORT;
+			int port = ADB.TCPIP_PORT;
 
-            //--------------------------------
-            // Prepare command
-            //--------------------------------
+			//--------------------------------
+			// Prepare command
+			//--------------------------------
 
-            String cmd = getString(R.string.connectCommand) + " " + ip;
+			String cmd = getString(R.string.connectCommand) + " " + ip;
 
-            //--------------------------------
-            // 5555 is the default port
-            // for adb connect command
-            // so don't display it
-            //--------------------------------
+			//--------------------------------
+			// 5555 is the default port
+			// for adb connect command
+			// so don't display it
+			//--------------------------------
 
-            if (port != 5555)
-            {
-                cmd += ":" + port;
-            }
+			if (port != 5555) {
+				cmd += ":" + port;
+			}
 
-            //--------------------------------
-            // Display connect command
-            //--------------------------------
+			//--------------------------------
+			// Display connect command
+			//--------------------------------
 
-            connectCommand.setText(cmd);
-        }
-    }
+			connectCommand.setText(cmd);
+		}
+	}
 }
