@@ -7,57 +7,50 @@ import com.wifidev.config.Logging;
 import com.wifidev.logic.root.RootCommand;
 import com.wifidev.root.RootTools;
 
-public class TCPIP
-{
-    public static void set()
-    {
-        //--------------------------------
-        // Make sure we have root
-        //--------------------------------
+public class TCPIP {
+	public static void set() {
+		//--------------------------------
+		// Make sure we have root
+		//--------------------------------
 
-        if (!RootTools.isRootAvailable())
-        {
-            return;
-        }
+		if (!RootTools.isRootAvailable()) {
+			return;
+		}
 
-        //--------------------------------
-        // Make sure we have root
-        // Also asks for root if not granted
-        //--------------------------------
+		//--------------------------------
+		// Make sure we have root
+		// Also asks for root if not granted
+		//--------------------------------
 
-        if (!RootTools.isAccessGiven())
-        {
-            return;
-        }
+		if (!RootTools.isAccessGiven()) {
+			return;
+		}
 
-        //--------------------------------
-        // Log it
-        //--------------------------------
+		//--------------------------------
+		// Log it
+		//--------------------------------
 
-        Log.d(Logging.TAG_NAME, "Restarting adbd in tcpip mode..." );
+		Log.d(Logging.TAG_NAME, "Restarting adbd in tcpip mode...");
 
-        //--------------------------------
-        // Set tcp port of adbd
-        // And restart daemon
-        //--------------------------------
+		//--------------------------------
+		// Set tcp port of adbd
+		// And restart daemon
+		//--------------------------------
 
-        String command = "stop adbd && setprop service.adb.tcp.port " + ADB.TCPIP_PORT + " && start adbd &";
+		String command = "stop adbd && setprop service.adb.tcp.port " + ADB.TCPIP_PORT + " && start adbd &";
 
-        try
-        {
-            //--------------------------------
-            // Execute the command
-            //--------------------------------
+		try {
+			//--------------------------------
+			// Execute the command
+			//--------------------------------
 
-            RootCommand.execute(command);
-        }
-        catch( Exception exc )
-        {
-            //--------------------------------
-            // Log exception
-            //--------------------------------
+			RootCommand.execute(command);
+		} catch (Exception exc) {
+			//--------------------------------
+			// Log exception
+			//--------------------------------
 
-            Log.e(Logging.TAG_NAME, exc.getMessage());
-        }
-    }
+			Log.e(Logging.TAG_NAME, exc.getMessage());
+		}
+	}
 }

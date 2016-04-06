@@ -22,60 +22,61 @@
 
 package com.wifidev.root.internal;
 
-import java.io.IOException;
+import android.content.Context;
+import android.util.Log;
 
 import com.wifidev.root.RootTools;
 import com.wifidev.root.execution.Command;
 import com.wifidev.root.execution.CommandCapture;
 import com.wifidev.root.execution.Shell;
 
-import android.content.Context;
-import android.util.Log;
+import java.io.IOException;
 
 public class Runner extends Thread {
 
-    private static final String LOG_TAG = "RootTools::Runner";
+	private static final String LOG_TAG = "RootTools::Runner";
 
-    Context context;
-    String binaryName;
-    String parameter;
+	Context context;
+	String binaryName;
+	String parameter;
 
-    public Runner(Context context, String binaryName, String parameter) {
-        this.context = context;
-        this.binaryName = binaryName;
-        this.parameter = parameter;
-    }
+	public Runner(Context context, String binaryName, String parameter) {
+		this.context = context;
+		this.binaryName = binaryName;
+		this.parameter = parameter;
+	}
 
-    public void run() {
-        String privateFilesPath = null;
-        try {
-            privateFilesPath = context.getFilesDir().getCanonicalPath();
-        } catch (IOException e) {
-            if (RootTools.debugMode) {
-                Log.e(LOG_TAG, "Problem occured while trying to locate private files directory!");
-            }
-            e.printStackTrace();
-        }
-        if (privateFilesPath != null) {
-            try {
-                CommandCapture command = new CommandCapture(0, false, privateFilesPath + "/" + binaryName + " " + parameter);
-                Shell.startRootShell().add(command);
-                commandWait(command);
+	public void run() {
+		String privateFilesPath = null;
+		try {
+			privateFilesPath = context.getFilesDir().getCanonicalPath();
+		} catch (IOException e) {
+			if (RootTools.debugMode) {
+				Log.e(LOG_TAG, "Problem occured while trying to locate private files directory!");
+			}
+			e.printStackTrace();
+		}
+		if (privateFilesPath != null) {
+			try {
+				CommandCapture command = new CommandCapture(0, false, privateFilesPath + "/" + binaryName + " " + parameter);
+				Shell.startRootShell().add(command);
+				commandWait(command);
 
-            } catch (Exception e) {}
-        }
-    }
+			} catch (Exception e) {
+			}
+		}
+	}
 
-    private void commandWait(Command cmd) {
-        synchronized (cmd) {
-            try {
-                if (!cmd.isFinished()) {
-                    cmd.wait(2000);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	private void commandWait(Command cmd) {
+		synchronized (cmd) {
+			try {
+				if (!cmd.isFinished()) {
+					cmd.wait(2000);
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

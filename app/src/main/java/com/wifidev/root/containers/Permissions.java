@@ -23,84 +23,84 @@
 package com.wifidev.root.containers;
 
 public class Permissions {
-    String type;
-    String user;
-    String group;
-    String other;
-    String symlink;
-    int permissions;
+	String type;
+	String user;
+	String group;
+	String other;
+	String symlink;
+	int permissions;
 
-    public String getSymlink() {
-        return this.symlink;
-    }
+	public String getSymlink() {
+		return this.symlink;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setSymlink(String symlink) {
+		this.symlink = symlink;
+	}
 
-    public int getPermissions() {
-        return this.permissions;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public String getUserPermissions() {
-        return this.user;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public String getGroupPermissions() {
-        return this.group;
-    }
+	public int getPermissions() {
+		return this.permissions;
+	}
 
-    public String getOtherPermissions() {
-        return this.other;
-    }
+	public void setPermissions(int permissions) {
+		this.permissions = permissions;
+	}
 
-    public void setSymlink(String symlink) {
-        this.symlink = symlink;
-    }
+	public String getUserPermissions() {
+		return this.user;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setUserPermissions(String user) {
+		this.user = user;
+	}
 
-    public void setPermissions(int permissions) {
-        this.permissions = permissions;
-    }
+	public String getGroupPermissions() {
+		return this.group;
+	}
 
-    public void setUserPermissions(String user) {
-        this.user = user;
-    }
+	public void setGroupPermissions(String group) {
+		this.group = group;
+	}
 
-    public void setGroupPermissions(String group) {
-        this.group = group;
-    }
+	public String getOtherPermissions() {
+		return this.other;
+	}
 
-    public void setOtherPermissions(String other) {
-        this.other = other;
-    }
+	public void setOtherPermissions(String other) {
+		this.other = other;
+	}
 
-    public String getUser() {
-        return user;
-    }
+	public String getUser() {
+		return user;
+	}
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+	public void setUser(String user) {
+		this.user = user;
+	}
 
-    public String getGroup() {
-        return group;
-    }
+	public String getGroup() {
+		return group;
+	}
 
-    public void setGroup(String group) {
-        this.group = group;
-    }
+	public void setGroup(String group) {
+		this.group = group;
+	}
 
-    public String getOther() {
-        return other;
-    }
+	public String getOther() {
+		return other;
+	}
 
-    public void setOther(String other) {
-        this.other = other;
-    }
+	public void setOther(String other) {
+		this.other = other;
+	}
 
 
 }
