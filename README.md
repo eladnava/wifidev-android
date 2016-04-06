@@ -1,5 +1,4 @@
-WifiDev [ROOT]
-=====================
+# wifidev-android
 
 [![Join the chat at https://gitter.im/eladnava/wifidev-android](https://badges.gitter.im/eladnava/wifidev-android.svg)](https://gitter.im/eladnava/wifidev-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -7,6 +6,6 @@ WifiDev is an Android application that lets you easily debug and test your Andro
 
 ![alt tag](https://raw.github.com/eladnava/wifidev-android/master/assets/screenshot.png)
 
-License
---
+## License
+
 Apache 2.0
