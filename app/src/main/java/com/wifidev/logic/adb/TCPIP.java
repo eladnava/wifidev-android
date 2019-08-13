@@ -59,5 +59,29 @@ public class TCPIP
 
             Log.e(Logging.TAG_NAME, exc.getMessage());
         }
+
+        //--------------------------------
+        // Enable Wi-Fi tethering
+        // regardless of carrier decision
+        //--------------------------------
+
+        command = "setprop net.tethering.noprovisioning true";
+
+        try
+        {
+            //--------------------------------
+            // Execute the command
+            //--------------------------------
+
+            RootCommand.execute(command);
+        }
+        catch( Exception exc )
+        {
+            //--------------------------------
+            // Log exception
+            //--------------------------------
+
+            Log.e(Logging.TAG_NAME, exc.getMessage());
+        }
     }
 }
