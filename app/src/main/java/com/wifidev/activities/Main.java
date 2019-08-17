@@ -101,15 +101,10 @@ public class Main extends Activity
             String cmd = getString(R.string.connectCommand) + " " + ip;
 
             //--------------------------------
-            // 5555 is the default port
-            // for adb connect command
-            // so don't display it
+            // Add port number
             //--------------------------------
 
-            if (port != 5555)
-            {
-                cmd += ":" + port;
-            }
+            cmd += ":" + port;
 
             //--------------------------------
             // Display connect command
