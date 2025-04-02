@@ -104,7 +104,7 @@ public class Main extends Activity
             // Add port number
             //--------------------------------
 
-            cmd += ":" + port;
+            // cmd += ":" + port;
 
             //--------------------------------
             // Display connect command
